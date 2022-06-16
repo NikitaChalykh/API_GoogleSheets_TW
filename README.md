@@ -10,7 +10,7 @@ REST API для получения данных из таблицы в Google Sh
 
 API сервис реализуется на базе фреймворка DRF.
 
-[Ссылка на техническое задание]([https://www.craft.do/s/n6OVYFVUpq0o6L](https://kanalservis.notion.site/kanalservis/Python-82f517c516d041b8aca227f0a44ed1f1))
+[Ссылка на техническое задание](https://kanalservis.notion.site/kanalservis/Python-82f517c516d041b8aca227f0a44ed1f1)
 
 Системные требования
 ----------
