@@ -31,6 +31,8 @@ API сервис реализуется на базе фреймворка DRF.
 * Docker
 * Celery
 * Redis
+* Telegram Bot API
+* BeautifulSoup4
 
 Установка проекта из репозитория (Linux и macOS)
 ----------
