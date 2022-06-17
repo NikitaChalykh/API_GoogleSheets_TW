@@ -21,6 +21,8 @@ class OrdersViewSet(
         detail=False,
         methods=['GET'],
     )
+    # эндпоинт для получения сводной стоимости заказов
+    # в рублях и долларах
     def total(self, request):
         dollar_sum = self.queryset.aggregate(
             Sum('dollar_value')
