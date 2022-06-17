@@ -66,6 +66,14 @@ echo BROKER=redis://redis >> .env
 
 echo BROKER_URL=redis://redis:6379/0 >> .env
 ```
+* ID Telegram чата для получения уведомлений
+```bash
+echo CHAT_ID=**************** >> .env
+```
+* токен Bot API Telegram для отправки уведомлений
+```bash
+echo TELEGRAM_TOKEN=****************0 >> .env
+```
 
 4. Установка и запуск приложения в контейнерах:
 ```bash 
