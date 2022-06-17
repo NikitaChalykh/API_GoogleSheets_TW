@@ -17,7 +17,7 @@ app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
     'beat_getting_sheets_data': {
-        'task': 'polls.tasks.check_orders',
+        'task': 'polls.tasks.check_data_in_sheets',
         'schedule': crontab(minute='*/1')
     },
 }
