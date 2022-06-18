@@ -54,9 +54,14 @@ git clone git@github.com:NikitaChalykh/API_GoogleSheets_TW.git
 cd API_GoogleSheets_TW
 ```
 
-2. Скопировать файл [credentials.json](https://disk.yandex.ru/d/lANbQjqwKF-uGA) в корневую папку backend рядом с файлом ```manage.py```
+2. Скачать и скопировать файл [credentials.json](https://disk.yandex.ru/d/lANbQjqwKF-uGA) в корневую папку ```/backend``` рядом с файлом ```manage.py```
+```bash 
+cd backend
 
-3. Cоздать и открыть файл ```.env``` с переменными окружения:
+* скопируйте скачанный файл через терминал или через finder (проводник) в текущую директорию
+```
+
+3. Cоздать файл ```.env``` в папке ```/infra``` для сохранения переменных окружения:
 ```bash 
 cd ../infra
 
@@ -91,7 +96,7 @@ echo CHAT_ID=**************** >> .env
 docker-compose up -d
 ```
 
-6. Запуск миграций, сбор статики, создание суперпользователя:
+6. Запуск миграций, сбор статики и создание суперпользователя:
 ```bash 
 docker-compose exec web python manage.py migrate
 
