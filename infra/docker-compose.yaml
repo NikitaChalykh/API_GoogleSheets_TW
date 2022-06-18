@@ -11,7 +11,7 @@ services:
   web: 
     build: ../backend
     restart: always
-    command: gunicorn --bind 127.0.0.1:8000 backend.wsgi
+    command: gunicorn --bind 0.0.0.0:8000 backend.wsgi
     volumes:
       - static_value:/app/static/
     depends_on:
