@@ -17,6 +17,8 @@ REST API для получения данных о заказах из Google Sh
 
 Проект разворачивается в следующих Docker контейнерах: web-приложение, postgresql-база данных, nginx-сервер, Redis-база данных и Celery-контейнер.
 
+[Таблица Google Sheets с данными о заказах товаров](https://docs.google.com/spreadsheets/d/1OpCylqw4U-64lMKZFVk7fhllqOvczTD5eb516aDghbo/edit#gid=0) 
+
 Системные требования
 ----------
 * Python 3.6+
@@ -74,10 +76,6 @@ echo BROKER_URL=redis://redis:6379/0 >> .env
 * ID Telegram чата для получения уведомлений
 ```bash
 echo CHAT_ID=**************** >> .env
-```
-* токен Bot API Telegram для отправки уведомлений
-```bash
-echo TELEGRAM_TOKEN=****************0 >> .env
 ```
 
 4. Установка и запуск приложения в контейнерах:
