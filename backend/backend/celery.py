@@ -18,6 +18,8 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'beat_getting_sheets_data': {
         'task': 'polls.tasks.check_data_in_sheets',
+        # задача вызывается каждую минуту для
+        # обновления и актуализации информации из google sheets
         'schedule': crontab(minute='*/1')
     },
 }
