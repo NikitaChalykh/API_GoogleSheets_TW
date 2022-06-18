@@ -17,7 +17,7 @@ REST API для получения данных о заказах из Google Sh
 
 Проект разворачивается в следующих Docker контейнерах: web-приложение, postgresql-база данных, nginx-сервер, Redis-база данных и Celery-контейнер.
 
-[Тестовая таблица Google Sheets с данными о заказах товаров](https://docs.google.com/spreadsheets/d/1OpCylqw4U-64lMKZFVk7fhllqOvczTD5eb516aDghbo/edit#gid=0) 
+[Тестовая таблица Google Sheets с данными о заказах](https://docs.google.com/spreadsheets/d/1OpCylqw4U-64lMKZFVk7fhllqOvczTD5eb516aDghbo/edit#gid=0) 
 
 Системные требования
 ----------
