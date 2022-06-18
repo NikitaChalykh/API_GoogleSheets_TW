@@ -70,7 +70,7 @@ def check_data_in_sheets():
         if lated_orders.exists():
             send_telegram_message(lated_orders)
             logger.info('Отправленны просроченные заказы в телеграмм')
-            # сообщение в телеграм отправляется только один раз до следующего
+            # сообщение в телеграм отправляется только один раз
             # (до следующего обновления данных в БД)
             lated_orders.update(is_sending=True)
             logger.info('Изменены статусы отправки сообщений в моделях')
