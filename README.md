@@ -54,7 +54,7 @@ git clone git@github.com:NikitaChalykh/API_GoogleSheets_TW.git
 cd API_GoogleSheets_TW
 ```
 
-2. Скопировать файл ```credentials.json```(передан в чате "HR-бот Каналсервис" отдельным файлом) в корневую папку backend рядом с файлом ```manage.py```
+2. Скопировать файл [credentials.json](https://disk.yandex.ru/d/lANbQjqwKF-uGA) в корневую папку backend рядом с файлом ```manage.py```
 
 3. Cоздать и открыть файл ```.env``` с переменными окружения:
 ```bash 
