@@ -18,6 +18,10 @@ class GoodsOrder(models.Model):
     delivery_date = models.DateField(
         verbose_name='Срок поставки'
     )
+    is_sending = models.BooleanField(
+        default=False,
+        verbose_name='Статус отправки в телеграмм'
+    )
 
     class Meta:
         verbose_name = "Заказ"

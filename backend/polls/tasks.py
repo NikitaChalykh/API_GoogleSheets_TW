@@ -1,14 +1,12 @@
-import logging
 import datetime
+import logging
+
 from celery import shared_task
-from .utils import (
-    check_orders_delivery_date,
-    get_data_in_sheets,
-    send_telegram_message,
-    create_orders,
-    FORMAT
-)
+
 from orders.models import GoodsOrder
+
+from .utils import (FORMAT, check_orders_delivery_date, create_orders,
+                    get_data_in_sheets, send_telegram_message)
 
 logger = logging.getLogger(__name__)
 
@@ -55,18 +53,27 @@ def check_data_in_sheets():
                     int(sheets_orders[i][0]),
                     int(sheets_orders[i][1]),
                     int(sheets_orders[i][2]),
-                    datetime.datetime.strptime(sheets_orders[i][3], FORMAT)
+                    datetime.datetime.strptime(
+                        sheets_orders[i][3], FORMAT
+                    ).date()
                 )
                 if order_tuple != sheet_order_tuple:
+                    print(order_tuple)
+                    print(sheet_order_tuple)
                     orders.delete()
                     create_orders(sheets_orders)
                     logger.info('Данные в БД обновлены')
                     break
         # проверяем актуальность сроков поставки заказов и отправляем сообщ.
         # c номерами заказов в телеграмм при наличии просроченных заказов
-        lated_orders = check_orders_delivery_date(orders)
-        if lated_orders != []:
+        lated_orders = check_orders_delivery_date()
+        if lated_orders.exists():
             send_telegram_message(lated_orders)
+            logger.info('Отправленны просроченные заказы в телеграмм')
+            # сообщение в телеграм отправляется только один раз до следующего
+            # (до следующего обновления данных в БД)
+            lated_orders.update(is_sending=True)
+            logger.info('Изменены статусы отправки сообщений в моделях')
     except Exception as error:
         logger.error(f'Сбой при работе Celery задачи: {error}')
         raise CeleryException

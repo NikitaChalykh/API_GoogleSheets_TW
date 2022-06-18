@@ -31,6 +31,6 @@ class OrdersViewSet(
             Sum('rub_value')
         )['rub_value__sum']
         serializer = TotalSerializer(
-            {'total_dollars': dollar_sum, 'total_rubles': rub_sum}
+            {'total_dollars': dollar_sum, 'total_rubles': round(rub_sum, 2)}
         )
         return Response(serializer.data, status=status.HTTP_200_OK)

@@ -8,6 +8,7 @@ import telegram
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from oauth2client.service_account import ServiceAccountCredentials
+
 from orders.models import GoodsOrder
 
 load_dotenv()
@@ -26,13 +27,14 @@ def get_actual_dollar_currency():
     return round(float(dollar_currency_text.replace(',', '.')), 2)
 
 
-def check_orders_delivery_date(orders):
-    '''Проверяем актуальность даты срока поставки заказа.'''
-    lated_orders = []
+def check_orders_delivery_date():
+    '''Проверяем актуальность даты срока поставки заказа
+    и статус отправки уведомлений в телеграмм.'''
     today_date = datetime.datetime.now().date()
-    for order in orders:
-        if order.delivery_date < today_date:
-            lated_orders.append(order.order_number)
+    lated_orders = GoodsOrder.objects.filter(
+        delivery_date__lt=today_date,
+        is_sending=False
+    )
     return lated_orders
 
 
@@ -63,22 +65,21 @@ def get_data_in_sheets():
     return sheet_values
 
 
-def send_telegram_message(message):
-    '''Отправка уведомлений в Telegramm.'''
+def send_telegram_message(lated_orders):
+    '''Отправка уведомлений о просроченных заказах в Telegramm.'''
     bot = telegram.Bot('2045985373:AAF9T9ZtOwCdA0kOzsDmdfgX6CKaskZylks')
     chat_id = os.getenv('CHAT_ID')
     bot.send_message(
         chat_id,
         'Срок поставки заказа(ов) №{} истек'.format(
-            ', '.join([str(x) for x in message])
+            ', '.join([str(x) for x in lated_orders])
         )
     )
 
 
 def create_orders(sheets_orders):
     '''Функция для группового создания объектов
-    в БД по данным из google sheets.
-    '''
+    в БД по данным из google sheets.'''
     new_orders = []
     for sheets_order in sheets_orders:
         dollar_currency = get_actual_dollar_currency()
