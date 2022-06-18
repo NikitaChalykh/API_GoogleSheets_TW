@@ -23,14 +23,9 @@ def get_actual_dollar_currency():
     return round(float(dollar_currency_text.replace(',', '.')), 2)
 
 
-def send_telegram_message(message):
-    '''Отправка уведомлений в Telegramm.'''
-    token = os.getenv(
-        '2045985373:AAF9T9ZtOwCdA0kOzsDmdfgX6CKaskZylks'
-    )
-    bot = telegram.Bot(token)
-    chat_id = os.getenv('CHAT_ID')
-    bot.send_message(chat_id, message)
+def check_actual_dollar_currency(order):
+    today_date = datetime.datetime.now().date()
+    return order.recalculation_date == today_date
 
 
 def check_orders_delivery_date(orders):
@@ -68,3 +63,13 @@ def get_data_in_sheets():
     ).execute()
     sheet_values = tuple(results['valueRanges'][0]['values'])
     return sheet_values
+
+
+def send_telegram_message(message):
+    '''Отправка уведомлений в Telegramm.'''
+    token = os.getenv(
+        '2045985373:AAF9T9ZtOwCdA0kOzsDmdfgX6CKaskZylks'
+    )
+    bot = telegram.Bot(token)
+    chat_id = os.getenv('CHAT_ID')
+    bot.send_message(chat_id, message)

@@ -9,7 +9,8 @@ class GoodsOrderAdmin(admin.ModelAdmin):
         'order_number',
         'dollar_value',
         'rub_value',
-        'delivery_date'
+        'delivery_date',
+        'recalculation_date'
     )
 
 

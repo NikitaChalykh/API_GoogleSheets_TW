@@ -18,6 +18,9 @@ class GoodsOrder(models.Model):
     delivery_date = models.DateField(
         verbose_name='Срок поставки'
     )
+    recalculation_date = models.DateField(
+        verbose_name='Дата пересчета заказа в рубли'
+    )
 
     class Meta:
         verbose_name = "Заказ"
