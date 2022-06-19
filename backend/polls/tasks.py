@@ -57,9 +57,7 @@ def check_data_in_sheets():
                         sheets_orders[i][3], FORMAT
                     ).date()
                 )
-                if order_tuple != sheet_order_tuple:
-                    print(order_tuple)
-                    print(sheet_order_tuple)
+                if order_tuple != sheet_order_tuple
                     orders.delete()
                     create_orders(sheets_orders)
                     logger.info('Данные в БД обновлены')
